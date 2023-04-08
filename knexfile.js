@@ -12,5 +12,9 @@ module.exports = {
       host: PGHOST,
       port: PGPORT,
     },
+    pool: {
+      min: 0,
+      max: 50,
+    },
   },
 };
