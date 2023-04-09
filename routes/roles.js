@@ -10,9 +10,9 @@ const checkAuth = require("../middleware/auth");
 const router = express.Router();
 
 router.get("/roles", getRoles);
-router.post("/roles", checkAuth, postRole);
-router.get("/roles/:id", checkAuth, getRole);
-router.put("/roles/:id", checkAuth, putRole);
-router.delete("/roles/:id", checkAuth, deleteRole);
+router.post("/roles", postRole);
+router.get("/roles/:id", getRole);
+router.put("/roles/:id", putRole);
+router.delete("/roles/:id", deleteRole);
 
 module.exports = router;

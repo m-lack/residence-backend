@@ -1,20 +1,24 @@
-require("dotenv").config();
+// Update with your config settings.
+require('dotenv').config()
 
-const { PGUSER, PGHOST, PGPASSWORD, PGDATABASE, PGPORT } = process.env;
-
+const { DB_USERNAME, DB_PASSWORD, DB_NAME, DB_PORT, DB_HOST } = process.env
 module.exports = {
+
   development: {
-    client: "pg",
+    client: 'pg',
     connection: {
-      database: PGDATABASE,
-      user: PGUSER,
-      password: PGPASSWORD,
-      host: PGHOST,
-      port: PGPORT,
+        database: DB_NAME,
+        user: DB_USERNAME,
+        password: DB_PASSWORD,
+        host: DB_HOST,
+        port: DB_PORT,
     },
-    pool: {
-      min: 0,
-      max: 50,
+    migrations: {
+        directory: __dirname + '/database/migrations',
     },
-  },
+    seeds: {
+        directory: __dirname + '/database/seeds',
+    },
+},
+
 };

@@ -1,14 +1,12 @@
-/*const knex = require("../database/knex");
+const knex = require("../database/knex");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-
 const {
   createError,
   BAD_REQUEST,
   UNAUTHORIZED,
   FORBIDDEN,
 } = require("../helpers/error_helper");
-
 const postLogin = async (req, res, next) => {
   const email = String(req.body.email);
   const password = String(req.body.password);
@@ -19,7 +17,6 @@ const postLogin = async (req, res, next) => {
         message: "`email` + `password` are required fields",
       })
     );
-
   await knex
     .select()
     .from("users")
@@ -61,8 +58,6 @@ const postLogin = async (req, res, next) => {
       }
     });
 };
-
 module.exports = {
   postLogin,
 };
-*/

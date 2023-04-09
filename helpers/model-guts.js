@@ -1,53 +1,54 @@
 module.exports = ({
   knex = {},
-  name = "name",
-  tableName = "tablename",
+  name = 'name',
+  tableName = 'tablename',
   selectableProps = [],
-  timeout = 1000,
+  timeout = 1000
 }) => {
-  const create = (props) => {
-    delete props.id;
+  const create = props => {
+    delete props.id 
 
-    return knex
-      .insert(props)
+    return knex.insert(props)
       .returning(selectableProps)
       .into(tableName)
-      .timeout(timeout);
-  };
+      .timeout(timeout)
+  }
 
-  const findAll = () =>
-    knex.select(selectableProps).from(tableName).timeout(timeout);
+  const findAll = () => knex.select(selectableProps)
+    .from(tableName)
+    .timeout(timeout)
 
-  const find = (filters) =>
-    knex
-      .select(selectableProps)
-      .from(tableName)
-      .where(filters)
-      .timeout(timeout);
+  const find = filters => knex.select(selectableProps)
+    .from(tableName)
+    .where(filters)
+    .timeout(timeout)
 
-  const findOne = (filters) =>
-    find(filters).then((results) => {
-      if (!Array.isArray(results)) return results;
+  const findOne = filters => find(filters)
+    .then(results => {
+      if (!Array.isArray(results)) return results
 
-      return results[0];
-    });
+      return results[0]
+    })
 
-  const findById = (id) =>
-    knex.select(selectableProps).from(tableName).where({ id }).timeout(timeout);
+  const findById = id => knex.select(selectableProps)
+    .from(tableName)
+    .where({ id })
+    .timeout(timeout)
 
   const update = (id, props) => {
-    delete props.id;
+    delete props.id 
 
-    return knex
-      .update(props)
+    return knex.update(props)
       .from(tableName)
       .where({ id })
       .returning(selectableProps)
-      .timeout(timeout);
-  };
+      .timeout(timeout)
+  }
 
-  const destroy = (id) =>
-    knex.del().from(tableName).where({ id }).timeout(timeout);
+  const destroy = id => knex.del()
+    .from(tableName)
+    .where({ id })
+    .timeout(timeout)
 
   return {
     name,
@@ -60,6 +61,6 @@ module.exports = ({
     findOne,
     findById,
     update,
-    destroy,
-  };
-};
+    destroy
+  }
+}
